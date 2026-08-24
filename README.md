@@ -7,7 +7,7 @@ https://github.com/user-attachments/assets/9752c168-1441-4f8f-9525-f6e81b044c81
 
 ![Пристрій у зборі](docs/final_view.jpg)
 
-![Tinkercad](https://www.tinkercad.com/things/bcOIGlIjFoJ-lorattgo-case)
+[Модель корпусу на Tinkercad](https://www.tinkercad.com/things/bcOIGlIjFoJ-lorattgo-case)
 
 ---
 
