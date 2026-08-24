@@ -26,7 +26,7 @@ https://github.com/user-attachments/assets/9752c168-1441-4f8f-9525-f6e81b044c81
 | Пасивний п'єзо-бузер |
 | Модуль вібромотора |
 | Акумулятор 18650 | 
-| плата захисту BMS | 
+| Плата захисту BMS | 
 | 3× резистор 10 кОм | підтяжки для GPIO 34/36/39 |
 
 **Завжди прикручуй антену перед вмиканням.** Передача без навантаження псує підсилювач.
@@ -348,10 +348,6 @@ lib/periph/               buzzer, vibration, battery
 ```
 
 Modules communicate through callbacks rather than reaching into each other; `link` knows nothing about the display, `ui` knows nothing about the radio.
-
-## Enclosure
-
-`switch_slider.scad` is a parametric extension for the board's power switch, bringing it out to the front panel so the battery underneath does not block access. Measure your own switch — LilyGO uses different ones across production runs.
 
 ## Notes and limitations
 
