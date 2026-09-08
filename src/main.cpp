@@ -8,6 +8,8 @@
 #include "link.h"
 #include "ui.h"
 #include "power.h"
+#include "version.h"
+#include "cli.h"
 
 // ===========================================================================
 // Тест дальності
@@ -238,8 +240,9 @@ static void menuActivate()
     break;
 
   case MENU_INFO:
-    uiSetStatus("SF" + String(LORA_SF) + " " + String(LORA_POWER) + "dBm  " +
-                String(batteryVolts(), 2) + "V");
+    // На екрані місця мало, тому лише hash і напруга —
+    // решту видно в Serial через versionPrint()
+    uiSetStatus(versionShort() + "  " + String(batteryVolts(), 2) + "V");
     break;
 
   case MENU_CLEAR:
@@ -327,15 +330,15 @@ void setup()
   }
 
   uiSetDeepSleepLabel(powerDeepSleepEnabled() ? "увімк" : "вимк");
-  uiSetSignal("SF" + String(LORA_SF) + "  " + String(LORA_FREQ, 1) + "MHz  " +
-              String(LORA_POWER) + "dBm");
+  uiSetSignal("SF" + String(LORA_SF) + "  " + String(LORA_FREQ, 1) + "MHz  " + String(LORA_POWER) + "dBm");
 
-  Serial.printf("node %d ready, peer %d, history %d\n",
-                NODE_ID, PEER_ID, historySize());
-  Serial.printf("battery: %.3f V (на піні %lu mV, CAL %.3f)\n",
-                batteryVolts(), batteryRawMv(), (double)VBAT_CAL);
+  versionPrint();
+  Serial.printf("history  : %d\n", historySize());
+  Serial.printf("battery: %.3f V (на піні %lu mV, CAL %.3f)\n", batteryVolts(), batteryRawMv(), (double)VBAT_CAL);
+
   signalStartup();
   uiInvalidate();
+  cliBegin();
 }
 
 void loop()
@@ -391,4 +394,5 @@ void loop()
   powerTick();
   historyTick();
   uiTick();
+  cliTick();
 }
